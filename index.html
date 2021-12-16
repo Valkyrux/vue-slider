@@ -14,19 +14,17 @@
 <body>
   <div id="app" class="container">
     <div class="slider-wrapper">
-      <div class="prev">
+      <div class="prev" @click="prevImg">
         <i class="fas fa-angle-left"></i>
       </div>
-      <div class="images">
-        <img src="images/image1.jpg" alt="">
+      <div class="images" @mouseover="autoPlay=false" @mouseleave="autoPlay=true">
+        <img v-bind:src="'images/'+ images[counterImg]" alt="">
       </div>
-      <div class="next">
+      <div class="next" @click="nextImg">
         <i class="fas fa-angle-right"></i>
       </div>
       <div class="nav">
-        <i class="fas fa-circle"></i>
-        <i class="fas fa-circle"></i>
-        <i class="fas fa-circle"></i>
+        <i class="fas fa-circle" v-bind:class="(index == counterImg) ? 'active' : ''" v-for = "(img, index) in images" :key="index" @click = "setThisImg(index)"></i>
       </div>
     </div>
   </div>
