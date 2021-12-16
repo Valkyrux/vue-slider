@@ -27,7 +27,8 @@ const app = new Vue({
         },
         setThisImg(index) {
             this.counterImg = index;
-        },
+        }
+        ,
         hider(condition) {
             if(condition == true) {
                 return -1;
