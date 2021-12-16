@@ -2,7 +2,7 @@ const app = new Vue({
     el: "#app",
     data: {
         counterImg: 0,
-        autoPlay: true,
+        mouseOn: false,
         images: [
             'image1.jpg',
             'image2.jpg',
@@ -28,16 +28,20 @@ const app = new Vue({
         setThisImg(index) {
             this.counterImg = index;
         },
-        autoPlayFalse() {
-            this.autoPlay = false;
-        },
-        autoPlayTrue() {
-            this.autoPlay = true;
-            console.log("true");
-        },
-        autoPlayFunction(canAutoPlay) {
-            const player = setInterval(() => {this.nextImg()}, 3000);
-            if(!canAutoPlay) {
+        hider(condition) {
+            if(condition == true) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    },
+
+    watch: {
+        mouseOn: function () {
+            if(this.mouseOn == false) {
+                player = setInterval(() => {this.nextImg()}, 3000);
+            } else {
                 clearInterval(player);
             }
         }

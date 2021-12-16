@@ -13,12 +13,12 @@
 
 <body>
   <div id="app" class="container">
-    <div class="slider-wrapper">
+    <div class="slider-wrapper"  @mouseover="mouseOn = true" @mouseleave= "mouseOn = false" @>
       <div class="prev" @click="prevImg">
         <i class="fas fa-angle-left"></i>
       </div>
-      <div class="images" @mouseover="autoPlay=false" @mouseleave="autoPlay=true">
-        <img v-bind:src="'images/'+ images[counterImg]" alt="">
+      <div class="images">
+        <img v-bind:src="'images/'+ images[counterImg]" :style="'z-index:' + hider(mouseOn)" alt="">
       </div>
       <div class="next" @click="nextImg">
         <i class="fas fa-angle-right"></i>
