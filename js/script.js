@@ -1,14 +1,9 @@
 const app = new Vue({
     el: "#app",
     data: {
-        counterImg: 0,
-        mouseOn: false,
-        images: [
-            'image1.jpg',
-            'image2.jpg',
-            'image3.jpg',
-            'image4.jpg'
-        ],
+        counterImg: null,
+        autoPlayOn: null,
+        images: [],
     },
     methods: {
         nextImg() {
@@ -27,24 +22,23 @@ const app = new Vue({
         },
         setThisImg(index) {
             this.counterImg = index;
-        }
-        ,
-        hider(condition) {
-            if(condition == true) {
-                return -1;
-            } else {
-                return 0;
-            }
+        },
+        autoPlayStart() {
+            this.autoPlayOn = setInterval(this.nextImg, 3000);
+        },
+        autoPlayEnd() {
+            clearInterval(this.autoPlayOn);
+            this.autoPlayOn = null;
         }
     },
-
-    watch: {
-        mouseOn: function () {
-            if(this.mouseOn == false) {
-                player = setInterval(() => {this.nextImg()}, 3000);
-            } else {
-                clearInterval(player);
-            }
-        }
+    created () {
+        this.counterImg = 0,
+        this.images = [
+            'image1.jpg',
+            'image2.jpg',
+            'image3.jpg',
+            'image4.jpg'
+        ];
+        this.autoPlayStart();
     }
 }) 
